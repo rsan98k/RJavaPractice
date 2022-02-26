@@ -10,14 +10,19 @@ class PairSumPresent{
 		int[] data = {10,15,3,7,21,5,9,1};
 		int pairSum = 4;
 		boolean flag  = false;
-		Map<Integer, Integer> isPairPresent = new HashMap<>();
+		String indices = "";
+
+		Map<Integer, String> isPairPresent = new HashMap<>();
 		for(int i=0; i<data.length; i++){
 			if(isPairPresent.containsKey(data[i])){
-				System.out.println("Pair is present in array -> ("+data[i]+","+isPairPresent.get(data[i])+")");
+				indices = isPairPresent.get(data[i]).split("_")[1]+","+i;
+				System.out.println("Pair is present in array -> ("+data[i]+","+isPairPresent.
+					get(data[i]).split("_")[0]+")");
+				System.out.print("The indices are "+indices);
 				flag = true; 
 				break;
 			} else {
-				isPairPresent.put(pairSum - data[i], data[i]);
+				isPairPresent.put(pairSum - data[i], String.valueOf(data[i])+"_"+i);
 			}
 		} 
 		if(!flag){
